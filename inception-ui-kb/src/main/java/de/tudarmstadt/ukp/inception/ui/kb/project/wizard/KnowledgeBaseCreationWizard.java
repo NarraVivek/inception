@@ -199,6 +199,10 @@ public class KnowledgeBaseCreationWizard extends BootstrapWizard {
                 // PermissionsStep is currently not shown. Therefore, set read-only property here
                 // manually.
                 kbModel.getObject().getKb().setReadOnly(true);
+                break;
+            default:
+            	kbModel.getObject().getKb().setReadOnly(false);
+                
             }
         }
 
