@@ -218,7 +218,7 @@ public class NamedEntityLinker
     private List<KBHandle> readCandidates(KnowledgeBase kb, String aCoveredText, int aBegin,
             CAS aCas)
     {
-        return kbService.read(kb, (conn) -> clService.disambiguate(kb, featureTraits.getScope(),
+        return kbService.read(kb, conn -> clService.disambiguate(kb, featureTraits.getScope(),
                 featureTraits.getAllowedValueType(), null, aCoveredText, aBegin, aCas));
     }
 

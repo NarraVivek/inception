@@ -78,7 +78,7 @@ public class RecommendationSidebar
         IModel<Preferences> modelPreferences = LambdaModelAdapter.of(
             () -> recommendationService.getPreferences(aModel.getObject().getUser(),
                     aModel.getObject().getProject()),
-            (v) -> recommendationService.setPreferences(aModel.getObject().getUser(),
+            v -> recommendationService.setPreferences(aModel.getObject().getUser(),
                     aModel.getObject().getProject(), v));
 
         warning = new WebMarkupContainer("warning");

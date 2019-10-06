@@ -256,7 +256,7 @@ public class StatementsPanel
         }
         
         if (prefs == StatementDetailPreference.BASIC) {
-            statements.removeIf((s) -> s.isInferred());
+            statements.removeIf(s -> s.isInferred());
         }
         
         // group statements by property

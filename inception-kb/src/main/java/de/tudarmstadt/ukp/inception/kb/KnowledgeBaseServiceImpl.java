@@ -443,7 +443,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier must be empty on create");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             String identifier = getReificationStrategy(kb).generateConceptIdentifier(conn, kb);
             aConcept.setIdentifier(identifier);
             aConcept.write(conn, kb);
@@ -486,7 +486,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier cannot be empty on update");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             conn.remove(aConcept.getOriginalStatements());
             aConcept.write(conn, kb);
         });
@@ -520,7 +520,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier must be empty on create");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             String identifier = getReificationStrategy(kb).generatePropertyIdentifier(conn, kb);
             aProperty.setIdentifier(identifier);
             aProperty.write(conn, kb);
@@ -550,7 +550,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier cannot be empty on update");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             conn.remove(aProperty.getOriginalStatements());
             aProperty.write(conn, kb);
         });
@@ -594,7 +594,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier must be empty on create");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             String identifier = getReificationStrategy(kb).generateInstanceIdentifier(conn, kb);
             aInstance.setIdentifier(identifier);
             aInstance.write(conn, kb);
@@ -637,7 +637,7 @@ public class KnowledgeBaseServiceImpl
             throw new IllegalArgumentException("Identifier cannot be empty on update");
         }
 
-        update(kb, (conn) -> {
+        update(kb, conn -> {
             conn.remove(aInstance.getOriginalStatements());
             aInstance.write(conn ,kb);
         });
@@ -873,7 +873,7 @@ public class KnowledgeBaseServiceImpl
      */
     public void createBaseProperty(KnowledgeBase akb, KBProperty aProperty)
     {
-        update(akb, (conn) -> {
+        update(akb, conn -> {
             aProperty.write(conn, akb);
         });
     }
@@ -954,16 +954,16 @@ public class KnowledgeBaseServiceImpl
         try (StopWatch watch = new StopWatch(log, "readItem(%s)", aIdentifier)) {
             Optional<KBConcept> kbConcept = readConcept(aKb, aIdentifier, false);
             if (kbConcept.isPresent()) {
-                return kbConcept.flatMap((c) -> Optional.of(c));
+                return kbConcept.flatMap(c -> Optional.of(c));
             }
             // In case we don't get the identifier as a concept we look for property/instance
             Optional<KBProperty> kbProperty = readProperty(aKb, aIdentifier);
             if (kbProperty.isPresent()) {
-                return kbProperty.flatMap((p) -> Optional.of(p));
+                return kbProperty.flatMap(p -> Optional.of(p));
             }
             Optional<KBInstance> kbInstance = readInstance(aKb, aIdentifier);
             if (kbInstance.isPresent()) {
-                return kbInstance.flatMap((i) -> Optional.of(i));
+                return kbInstance.flatMap(i -> Optional.of(i));
             }
             return Optional.empty();
         }

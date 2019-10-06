@@ -193,7 +193,7 @@ public class RecommenderEditorPanel
                 RecommendationEngineFactory factory = recommenderRegistry.getFactory(name);
                 return factory != null ? Pair.of(factory.getId(), factory.getName()) : null;
             }, 
-            (v) -> recommenderModel.getObject().setTool(v != null ? v.getKey() : null));
+            v -> recommenderModel.getObject().setTool(v != null ? v.getKey() : null));
 
         toolChoice = new BootstrapSelect<Pair<String, String>>(MID_TOOL, toolModel, this::listTools)
         {

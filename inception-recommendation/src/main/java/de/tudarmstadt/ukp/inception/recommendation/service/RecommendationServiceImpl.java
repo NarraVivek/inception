@@ -575,7 +575,7 @@ public class RecommendationServiceImpl
     private RecommendationState getState(String aUsername, Project aProject)
     {
         synchronized (states) {
-            return states.computeIfAbsent(new RecommendationStateKey(aUsername, aProject), (v) -> 
+            return states.computeIfAbsent(new RecommendationStateKey(aUsername, aProject), v -> 
                     new RecommendationState());
         }
     }

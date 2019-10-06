@@ -450,7 +450,7 @@ public class AccessSpecificSettingsPanel
 
     private IResourceStream actionExport(String rdfFormatFileExt)
     {
-        return new TempFileResource((os) -> kbService
+        return new TempFileResource(os -> kbService
             .exportData(kbModel.getObject().getKb(), getRdfFormatForFileExt(rdfFormatFileExt), os));
     }
 

@@ -192,7 +192,7 @@ public class Predictions
     public void removePredictions(Long recommenderId)
     {
         predictions.entrySet()
-            .removeIf((p) -> p.getKey().getRecommenderId() == recommenderId);
+            .removeIf(p -> p.getKey().getRecommenderId() == recommenderId);
     }
 
     /**

@@ -1451,7 +1451,7 @@ public class KnowledgeBaseServiceImplIntegrationTest  {
         sut.createInstance(kb, germanInstance);
 
         // Create English instance and ensure that both have the same identifier
-        sut.update(kb, (conn) -> {
+        sut.update(kb, conn -> {
             englishInstance.setIdentifier(germanInstance.getIdentifier());
             englishInstance.write(conn, kb);
         });

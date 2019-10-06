@@ -244,7 +244,7 @@ public class ProjectsOverviewPage
     {
         User user = userRepository.getCurrentUser();
         Project currentProject = aItem.getModelObject();
-        confirmLeaveDialog.setConfirmAction((_target) -> {
+        confirmLeaveDialog.setConfirmAction(_target -> {
             projectService.listProjectPermissionLevel(user, currentProject).stream()
                     .forEach(projectService::removeProjectPermission);
             _target.add(projectListContainer);

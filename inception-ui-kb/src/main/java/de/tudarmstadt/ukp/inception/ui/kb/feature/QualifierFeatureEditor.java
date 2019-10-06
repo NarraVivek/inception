@@ -278,7 +278,7 @@ public class QualifierFeatureEditor
     {
         AnnotationFeature linkedAnnotationFeature = getLinkedAnnotationFeature();
 
-        qualifierModel = new LambdaModelAdapter<>(() -> this.getSelectedKBItem(aItem), (v) -> {
+        qualifierModel = new LambdaModelAdapter<>(() -> this.getSelectedKBItem(aItem), v -> {
             this.setSelectedKBItem((KBHandle) v, aItem, linkedAnnotationFeature);
         });
 

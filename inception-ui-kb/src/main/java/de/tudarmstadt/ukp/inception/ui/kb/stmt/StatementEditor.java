@@ -218,13 +218,13 @@ public class StatementEditor extends Panel
             });
             
             LambdaAjaxLink editLink = new LambdaAjaxLink("edit", StatementEditor.this::actionEdit)
-                    .onConfigure((_this) -> _this.setVisible(!statement.getObject().isInferred()));
+                    .onConfigure(_this -> _this.setVisible(!statement.getObject().isInferred()));
             editLink.add(new WriteProtectionBehavior(kbModel));
             add(editLink);
 
             LambdaAjaxLink addQualifierLink = new LambdaAjaxLink("addQualifier",
                 t -> actionAddQualifier(t, aStatement.getObject()))
-                .onConfigure((_this) -> _this.setVisible(!statement.getObject().isInferred() &&
+                .onConfigure(_this -> _this.setVisible(!statement.getObject().isInferred() &&
                     kbModel.getObject().getReification().supportsQualifier()));
             addQualifierLink.add(new Label("label", new ResourceModel("qualifier.add")));
             addQualifierLink.add(new WriteProtectionBehavior(kbModel));
@@ -232,7 +232,7 @@ public class StatementEditor extends Panel
             
             LambdaAjaxLink makeExplicitLink = new LambdaAjaxLink("makeExplicit",
                     StatementEditor.this::actionMakeExplicit).onConfigure(
-                        (_this) -> _this.setVisible(statement.getObject().isInferred()));
+                        _this -> _this.setVisible(statement.getObject().isInferred()));
             makeExplicitLink.add(new WriteProtectionBehavior(kbModel));
             add(makeExplicitLink);
 

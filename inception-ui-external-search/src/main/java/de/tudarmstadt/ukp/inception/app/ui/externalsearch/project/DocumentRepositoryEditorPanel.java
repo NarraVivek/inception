@@ -94,7 +94,7 @@ public class DocumentRepositoryEditorPanel
             return listTypes().stream()
                     .filter(r -> r.getKey().equals(repositoryModel.getObject().getType()))
                     .findFirst().orElse(null);
-        }, (v) -> repositoryModel.getObject().setType(v.getKey()));
+        }, v -> repositoryModel.getObject().setType(v.getKey()));
 
         typeChoice = new BootstrapSelect<Pair<String, String>>("type", typeModel, this::listTypes)
         {
