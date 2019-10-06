@@ -108,7 +108,7 @@ public class TrainingTask
             if (recommenders.isEmpty()) {
                 log.trace("[{}][{}][{}]: No active recommenders, skipping training.",
                         getId(), user.getUsername(), layer.getUiName());
-                continue;
+                
             }
             
             for (EvaluatedRecommender r : recommenders) {
@@ -127,7 +127,7 @@ public class TrainingTask
                 if (!recommender.isEnabled()) {
                     log.debug("[{}][{}][{}]: Disabled - skipping", user.getUsername(),
                             getId(), r.getRecommender().getName());
-                    continue;
+                    
                 }
                 
                 long startTime = System.currentTimeMillis();

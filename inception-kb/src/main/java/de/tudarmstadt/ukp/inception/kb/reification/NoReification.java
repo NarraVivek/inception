@@ -112,12 +112,12 @@ public class NoReification
             if (value == null) {
                 // Can this really happen?
                 log.warn("Property with null value detected.");
-                continue;
+                
             }
 
             if (value instanceof BNode) {
                 log.warn("Properties with blank node values are not supported");
-                continue;
+               
             }
             
             if ((!aAll && hasImplicitNamespace(aKB, stmt.getPredicate().stringValue()))) {

@@ -251,7 +251,7 @@ public class SimulationLearningCurvePanel
                 
                 if (evaluationResult.isEvaluationSkipped()) {
                     LOG.warn("Evaluation skipped. Chart cannot to be shown");
-                    continue;
+                    
                 }
 
                 evaluationResults.add(evaluationResult);

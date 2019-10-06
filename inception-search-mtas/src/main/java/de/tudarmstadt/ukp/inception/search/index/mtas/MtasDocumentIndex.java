@@ -322,7 +322,7 @@ public class MtasDocumentIndex
                                 log.trace("Indexed document lacks source/annotation document IDs"
                                         + " - source: {}, annotation: {}",
                                         rawSourceDocumentId, rawAnnotationDocumentId);
-                                continue;
+                                
 
                             }
                             

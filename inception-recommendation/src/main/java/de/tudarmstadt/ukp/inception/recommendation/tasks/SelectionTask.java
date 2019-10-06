@@ -121,7 +121,7 @@ public class SelectionTask
 
                 if (!recommender.isEnabled()) {
                     log.debug("[{}][{}]: Disabled - skipping", userName, recommender.getName());
-                    continue;
+                    
                 }
 
                 String recommenderName = recommender.getName();

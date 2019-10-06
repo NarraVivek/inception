@@ -850,7 +850,7 @@ public class RecommendationServiceImpl
                 if (recommenders.isEmpty()) {
                     log.trace("[{}]: No active recommenders on layer [{}]", username,
                             layer.getUiName());
-                    continue;
+                    
                 }
 
                 nextRecommender: for (EvaluatedRecommender r : recommenders) {
@@ -1219,7 +1219,7 @@ public class RecommendationServiceImpl
                     for (RecommendationStateKey committedKey : committed) {
                         if (!dirties.contains(committedKey)) {
                             // Committed but not dirty, so nothing to do.
-                            continue;
+                          
                         }
                         
                         Project project = projectService.getProject(committedKey.getProjectId());
