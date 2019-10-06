@@ -46,32 +46,40 @@ public class TaskConsumer
         queue = aQueue;
         applicationContext = aApplicationContext;
     }
+    
+    
+    public void intermediateMethod(Task activeTask)
+    {
+    	try {
+            AutowireCapableBeanFactory factory = applicationContext
+                    .getAutowireCapableBeanFactory();
+            factory.autowireBean(activeTask);
+            factory.initializeBean(activeTask, "transientTask");
+
+            log.debug("Indexing task started: {}", activeTask);
+            activeTask.run();
+            log.debug("Indexing task completed: {}", activeTask);
+        }
+        catch (Throwable e) {
+            log.error("Indexing task failed: {}", activeTask, e);
+        }
+        finally {
+            activeTask = null;
+        }
+    	
+    }
 
     @Override
     public void run()
     {
+    	
         try {
             while (!Thread.interrupted()) {
                 log.debug("Waiting for new indexing task...");
 
                 activeTask = queue.take();
-
-                try {
-                    AutowireCapableBeanFactory factory = applicationContext
-                            .getAutowireCapableBeanFactory();
-                    factory.autowireBean(activeTask);
-                    factory.initializeBean(activeTask, "transientTask");
-
-                    log.debug("Indexing task started: {}", activeTask);
-                    activeTask.run();
-                    log.debug("Indexing task completed: {}", activeTask);
-                }
-                catch (Throwable e) {
-                    log.error("Indexing task failed: {}", activeTask, e);
-                }
-                finally {
-                    activeTask = null;
-                }
+                intermediateMethod(activeTask);
+                
             }
         }
         catch (InterruptedException ie) {

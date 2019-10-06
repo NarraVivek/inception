@@ -240,6 +240,18 @@ public class KnowledgeBaseCreationWizard extends BootstrapWizard {
             add(new KnowledgeBaseIriPanel("iriPanel", model));
         }
 
+        public void intermediateMethod(Pair<String, File> f,KnowledgeBase kb)
+        {
+            try (InputStream is = new FileInputStream(f.getValue())) {
+                kbService.importData(kb, f.getValue().getName(), is);
+                success("Imported: " + f.getKey());
+            }
+            catch (Exception e) {
+                error("Failed to import: " + f.getKey());
+            }
+  
+        }
+        
         @Override
         public void applyState()
         {   
@@ -259,13 +271,7 @@ public class KnowledgeBaseCreationWizard extends BootstrapWizard {
                     success("Created knowledge base: " + kb.getName());
                     kbService.defineBaseProperties(kb);
                     for (Pair<String, File> f : wrapper.getFiles()) {
-                        try (InputStream is = new FileInputStream(f.getValue())) {
-                            kbService.importData(kb, f.getValue().getName(), is);
-                            success("Imported: " + f.getKey());
-                        }
-                        catch (Exception e) {
-                            error("Failed to import: " + f.getKey());
-                        }
+                    	intermediateMethod(f, kb);
                     }
                     break;
                 case REMOTE:

@@ -176,13 +176,7 @@ public class KnowledgeBaseDetailsPanel
             if (kb.getType() == RepositoryType.LOCAL) {
                 kbService.defineBaseProperties(kb);
                 for (Pair<String, File> f : kbw.getFiles()) {
-                    try (InputStream is = new FileInputStream(f.getValue())) {
-                        kbService.importData(kb, f.getValue().getName(), is);
-                        success("Imported: " + f.getKey());
-                    }
-                    catch (Exception e) {
-                        error("Failed to import: " + f.getKey());
-                    }
+                    intermediateMethod(f, kb);
                 }
             }
             modelChanged();
@@ -191,6 +185,17 @@ public class KnowledgeBaseDetailsPanel
         catch (Exception e) {
             error("Unable to save knowledge base: " + e.getLocalizedMessage());
             log.error("Unable to save knowledge base.", e);
+        }
+    }
+    
+    private void intermediateMethod(Pair<String, File> f,KnowledgeBase kb)
+    {
+    	try (InputStream is = new FileInputStream(f.getValue())) {
+            kbService.importData(kb, f.getValue().getName(), is);
+            success("Imported: " + f.getKey());
+        }
+        catch (Exception e) {
+            error("Failed to import: " + f.getKey());
         }
     }
 
