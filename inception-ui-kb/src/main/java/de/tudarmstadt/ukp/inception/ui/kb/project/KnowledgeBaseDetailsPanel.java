@@ -176,7 +176,7 @@ public class KnowledgeBaseDetailsPanel
             if (kb.getType() == RepositoryType.LOCAL) {
                 kbService.defineBaseProperties(kb);
                 for (Pair<String, File> f : kbw.getFiles()) {
-                    intermediateMethod(f, kb);
+                    fileinputmethod(f, kb);
                 }
             }
             modelChanged();
@@ -188,7 +188,7 @@ public class KnowledgeBaseDetailsPanel
         }
     }
     
-    private void intermediateMethod(Pair<String, File> f,KnowledgeBase kb)
+    private void fileinputmethod(Pair<String, File> f,KnowledgeBase kb)
     {
     	try (InputStream is = new FileInputStream(f.getValue())) {
             kbService.importData(kb, f.getValue().getName(), is);
