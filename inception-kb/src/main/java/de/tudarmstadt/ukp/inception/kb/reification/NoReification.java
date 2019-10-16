@@ -112,7 +112,7 @@ public class NoReification
             if (value == null) {
                 // Can this really happen?
                 log.warn("Property with null value detected.");
-                
+                continue;
             }
 
             if (value instanceof BNode) {
