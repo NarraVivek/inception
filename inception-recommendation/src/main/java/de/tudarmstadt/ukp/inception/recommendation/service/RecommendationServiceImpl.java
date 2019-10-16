@@ -850,7 +850,7 @@ public class RecommendationServiceImpl
                 if (recommenders.isEmpty()) {
                     log.trace("[{}]: No active recommenders on layer [{}]", username,
                             layer.getUiName());
-                    
+                    continue;
                 }
 
                 nextRecommender: for (EvaluatedRecommender r : recommenders) {
