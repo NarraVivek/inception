@@ -240,7 +240,7 @@ public class KnowledgeBaseCreationWizard extends BootstrapWizard {
             add(new KnowledgeBaseIriPanel("iriPanel", model));
         }
 
-        public void intermediateMethod(Pair<String, File> f,KnowledgeBase kb)
+        public void kbcreation(Pair<String, File> f,KnowledgeBase kb)
         {
             try (InputStream is = new FileInputStream(f.getValue())) {
                 kbService.importData(kb, f.getValue().getName(), is);
@@ -271,7 +271,7 @@ public class KnowledgeBaseCreationWizard extends BootstrapWizard {
                     success("Created knowledge base: " + kb.getName());
                     kbService.defineBaseProperties(kb);
                     for (Pair<String, File> f : wrapper.getFiles()) {
-                    	intermediateMethod(f, kb);
+                    	kbcreation(f, kb);
                     }
                     break;
                 case REMOTE:
