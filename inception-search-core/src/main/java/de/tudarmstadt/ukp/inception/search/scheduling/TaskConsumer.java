@@ -48,7 +48,7 @@ public class TaskConsumer
     }
     
     
-    public void intermediateMethod(Task activeTask)
+    public void TaskIndexing(Task activeTask)
     {
     	try {
             AutowireCapableBeanFactory factory = applicationContext
@@ -78,7 +78,7 @@ public class TaskConsumer
                 log.debug("Waiting for new indexing task...");
 
                 activeTask = queue.take();
-                intermediateMethod(activeTask);
+                TaskIndexing(activeTask);
                 
             }
         }
