@@ -121,7 +121,7 @@ public class PdfAnnoRendererTest
         posFeature.setVisible(true);
 
         FeatureSupportRegistryImpl featureSupportRegistry = new FeatureSupportRegistryImpl(
-            asList(new PrimitiveUimaFeatureSupport(),
+            asList(new PrimitiveUimaFeatureSupport(),// function is invoked here
                 new SlotFeatureSupport(schemaService)));
         featureSupportRegistry.init();
 
