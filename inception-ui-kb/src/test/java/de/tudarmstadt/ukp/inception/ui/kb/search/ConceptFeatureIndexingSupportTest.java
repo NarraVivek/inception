@@ -82,7 +82,7 @@ public class ConceptFeatureIndexingSupportTest
         kb = new KnowledgeBase();
 
         featureSupportRegistry = new FeatureSupportRegistryImpl(asList(
-                new PrimitiveUimaFeatureSupport(),
+                new PrimitiveUimaFeatureSupport(),// function is invoked here
                 new ConceptFeatureSupport(kbService)));
         featureSupportRegistry.init();
         
